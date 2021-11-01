@@ -1,3 +1,10 @@
+const withPlugins = require('next-compose-plugins');
+
+const indexSearch = require('./plugins/search-index');
+const feed = require('./plugins/feed');
+const sitemap = require('./plugins/sitemap');
+const socialImages = require('./plugins/socialImages');
+
 // For building on vercel: https://github.com/Automattic/node-canvas/issues/1779
 if (
   process.env.LD_LIBRARY_PATH == null ||
@@ -10,12 +17,6 @@ if (
   }/node_modules/canvas/build/Release:${process.env.LD_LIBRARY_PATH || ''}`;
 }
 
-const withPlugins = require('next-compose-plugins');
-
-const indexSearch = require('./plugins/search-index');
-const feed = require('./plugins/feed');
-const sitemap = require('./plugins/sitemap');
-const socialImages = require('./plugins/socialImages');
 
 module.exports = withPlugins([[indexSearch], [feed], [sitemap], [socialImages]], {
   // By default, Next.js removes the trailing slash. One reason this would be good
